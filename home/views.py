@@ -2,13 +2,15 @@ from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from home.models import Setting,ContactForm,ContactFormMessage
+from product.models import Product
 
 
 def index(request):
 
     setting=Setting.objects.get(pk=1)
+    sliderdata=Product.objects.all()
 
-    context = {'setting': setting, 'page':'home'}
+    context = {'setting': setting, 'page':'home','sliderdata':sliderdata}
     return render(request, 'index.html', context)
 
 def hakkimizda(request):
