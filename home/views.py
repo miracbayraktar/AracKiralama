@@ -2,15 +2,19 @@ from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from home.models import Setting,ContactForm,ContactFormMessage
-from product.models import Product
+from product.models import Product, Category
 
 
 def index(request):
 
     setting=Setting.objects.get(pk=1)
     sliderdata=Product.objects.all()
+    category=Category.objects.all()
+    dayproducts=Product.objects.all()
+    lastproducts = Product.objects.all().order_by('-id')
+    randomproducts = Product.objects.all().order_by('?')
 
-    context = {'setting': setting, 'page':'home','sliderdata':sliderdata}
+    context = {'setting': setting,'category':category, 'page':'home','sliderdata':sliderdata,'dayproducts':dayproducts,'lastproducts':lastproducts,'randomproducts':randomproducts,}
     return render(request, 'index.html', context)
 
 def hakkimizda(request):

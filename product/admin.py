@@ -12,6 +12,7 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ['title', 'status']
     list_filter = ['status']
 
+
 class ProductAdmin(admin.ModelAdmin):
     list_display = ['title', 'category', 'price', 'amount', 'status']
 
@@ -20,6 +21,7 @@ class ProductAdmin(admin.ModelAdmin):
 
 class ImagesAdmin(admin.ModelAdmin):
     list_display = ['title','product', 'image']
+
 
 
 

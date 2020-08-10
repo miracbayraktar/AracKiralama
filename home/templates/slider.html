@@ -1,7 +1,6 @@
 {% load static %}
 <section class="model-area section-gap" id="cars">
 				<div class="container">
-
 					<div class="row d-flex justify-content-center pb-40">
 						<div class="col-md-8 pb-40 header-text">
 							<h1 class="text-center pb-10">Choose your Desired Car Model</h1>
@@ -10,13 +9,11 @@
 							</p>
 						</div>
 					</div>
-
-					<div class="active-model-carusel owl-carousel owl-theme owl-loaded">
-                        {% for rs in sliderdata %}
-						<div class="owl-stage-outer">
-							<div class="owl-controls">
-								<div class="owl-nav">
-									<h4 class="mt-20">{{ rs.title }} </h4>
+					<div class="active-model-carusel">
+						<div class="row align-items-center single-model item">
+							<div class="col-lg-6 model-left">
+								<div class="title justify-content-between d-flex">
+									<h4 class="mt-20">Audi 3000 msi</h4>
 									<h2>$149<span>/day</span></h2>
 								</div>
 								<p>
@@ -30,15 +27,52 @@
 								</p>
 								<a class="text-uppercase primary-btn" href="#">Book This Car Now</a>
 							</div>
-
 							<div class="col-lg-6 model-right">
-								<img class="img-fluid" src="" alt="">
+								<img class="img-fluid" src="{%  static 'images/car_1.jpg' %}" alt="">
 							</div>
 						</div>
-                        {% endfor %}
-
-
+						<div class="row align-items-center single-model item">
+							<div class="col-lg-6 model-left">
+								<div class="title justify-content-between d-flex">
+									<h4 class="mt-20">Audi 3000 msi</h4>
+									<h2>$149<span>/day</span></h2>
+								</div>
+								<p>
+									Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+								</p>
+								<p>
+									Capacity         : 04 Person <br>
+									Doors            : 04 <br>
+									Air Condition    : Dual Zone <br>
+									Transmission     : Automatic
+								</p>
+								<a class="text-uppercase primary-btn" href="#">Book This Car Now</a>
+							</div>
+							<div class="col-lg-6 model-right">
+								<img class="img-fluid" src="{%  static 'images/car_2.jpg' %}" alt="">
+							</div>
+						</div>
+						<div class="row align-items-center single-model item">
+							<div class="col-lg-6 model-left">
+								<div class="title justify-content-between d-flex">
+									<h4 class="mt-20">Audi 3000 msi</h4>
+									<h2>$149<span>/day</span></h2>
+								</div>
+								<p>
+									Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+								</p>
+								<p>
+									Capacity         : 04 Person <br>
+									Doors            : 04 <br>
+									Air Condition    : Dual Zone <br>
+									Transmission     : Automatic
+								</p>
+								<a class="text-uppercase primary-btn" href="#">Book This Car Now</a>
+							</div>
+							<div class="col-lg-6 model-right">
+								<img class="img-fluid" src="{%  static 'images/car_3.jpg' %}" alt="">
+							</div>
+						</div>
 					</div>
 				</div>
-</section>
-
+			</section>
