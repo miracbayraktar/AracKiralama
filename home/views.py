@@ -1,6 +1,8 @@
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
+
+from home.form import SearchForm
 from home.models import Setting,ContactForm,ContactFormMessage
 from product.models import Product, Category
 
@@ -10,9 +12,9 @@ def index(request):
     setting=Setting.objects.get(pk=1)
     sliderdata=Product.objects.all()
     category=Category.objects.all()
-    dayproducts=Product.objects.all()
-    lastproducts = Product.objects.all().order_by('-id')
-    randomproducts = Product.objects.all().order_by('?')
+    dayproducts=Product.objects.all()[:4]
+    lastproducts = Product.objects.all().order_by('-id')[:4]
+    randomproducts = Product.objects.all().order_by('?')[:4]
 
     context = {'setting': setting,'category':category, 'page':'home','sliderdata':sliderdata,'dayproducts':dayproducts,'lastproducts':lastproducts,'randomproducts':randomproducts,}
     return render(request, 'index.html', context)
@@ -59,3 +61,22 @@ def category_products(request,id,slug):
 
     context = {'category':category, 'products': products,'slug':slug }
     return render(request, 'products.html', context)
+
+def product_detail(request,id,slug):
+   category = Category.objects.all()
+   product = Product.objects.filter(pk=id)
+   context = {'products':product,'category': category}
+   return render(request, 'product_detail.html',context)
+
+def product_search(request):
+
+    if request.method== 'POST':
+        form=SearchForm(request.POST)
+        if form.is_valid():
+            category = Category.objects.all()
+            query=form.cleaned_data['query']
+            product = Product.objects.filter(title__icontains='query')
+            context = {'products': product, 'category': category}
+            return render(request, 'products_search.html', context)
+
+    return HttpResponseRedirect('/')

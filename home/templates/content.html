@@ -1,5 +1,53 @@
      {% load static %}
+      <div class="site-section">
+        <div class="container">
+          <h2 class="section-heading"><strong>How it works?</strong></h2>
+          <p class="mb-5">Easy steps to get you started</p>
 
+          <div class="row mb-5">
+            <div class="col-lg-4 mb-4 mb-lg-0">
+              <div class="step">
+                <span>1</span>
+                <div class="step-inner">
+                  <span class="number text-primary">01.</span>
+                  <h3>Select a car</h3>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, laboriosam!</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 mb-4 mb-lg-0">
+              <div class="step">
+                <span>2</span>
+                <div class="step-inner">
+                  <span class="number text-primary">02.</span>
+                  <h3>Fill up form</h3>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, laboriosam!</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 mb-4 mb-lg-0">
+              <div class="step">
+                <span>3</span>
+                <div class="step-inner">
+                  <span class="number text-primary">03.</span>
+                  <h3>Payment</h3>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, laboriosam!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-4 mx-auto">
+              <a href="#" class="d-flex align-items-center play-now mx-auto">
+                <span class="icon">
+                  <span class="icon-play"></span>
+                </span>
+                <span class="caption">Video how it works</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
 
@@ -16,11 +64,12 @@
 
 
         <div class="row">
+            {% for rs in products %}
           <div class="col-md-6 col-lg-4 mb-4">
 
             <div class="listing d-block  align-items-stretch">
               <div class="listing-img h-100 mr-4">
-                <img src="/uploads/images/ferrari/ferrari-488-pista-1_16_9_1548487713.jpeg" alt="Image" class="img-fluid">
+                <img src="{% static 'images/car_6.jpg' %}" alt="Image" class="img-fluid">
               </div>
               <div class="listing-contents h-100">
                 <h3>Mitsubishi Pajero</h3>
@@ -49,12 +98,12 @@
 
             </div>
           </div>
-
+{% endfor %}
           <div class="col-md-6 col-lg-4 mb-4">
 
             <div class="listing d-block  align-items-stretch">
               <div class="listing-img h-100 mr-4">
-                <img src="/uploads/images/ferrari/2020-ferrari-812-gts.jpg" alt="Image" class="img-fluid">
+                <img src="{% static 'images/car_1.jpg' %}" alt="Image" class="img-fluid">
               </div>
               <div class="listing-contents h-100">
                 <h3>Nissan Moco</h3>
@@ -89,7 +138,7 @@
 
             <div class="listing d-block  align-items-stretch">
               <div class="listing-img h-100 mr-4">
-                <img src="/uploads/images/audi/images%20(3).jpg" alt="Image" class="img-fluid">
+                <img src="{% static 'images/car_2.jpg' %}" alt="Image" class="img-fluid">
               </div>
               <div class="listing-contents h-100">
                 <h3>Honda Fitta</h3>
@@ -123,7 +172,7 @@
 
             <div class="listing d-block  align-items-stretch">
               <div class="listing-img h-100 mr-4">
-                <img src="/uploads/images/audi/images%20(2).jpg" alt="Image" class="img-fluid">
+                <img src="{% static 'images/car_3.jpg' %}" alt="Image" class="img-fluid">
               </div>
               <div class="listing-contents h-100">
                 <h3>Skoda Laura</h3>
@@ -157,7 +206,7 @@
 
             <div class="listing d-block  align-items-stretch">
               <div class="listing-img h-100 mr-4">
-                <img src="/uploads/images/audi/indir%20(1).jpg" alt="Image" class="img-fluid">
+                <img src="{% static 'images/car_4.jpg' %}" alt="Image" class="img-fluid">
               </div>
               <div class="listing-contents h-100">
                 <h3>Mazda LaPuta</h3>
@@ -192,7 +241,7 @@
 
             <div class="listing d-block  align-items-stretch">
               <div class="listing-img h-100 mr-4">
-                <img src="/uploads/images/audi/images.jpg" alt="Image" class="img-fluid">
+                <img src="{% static 'images/car_5.jpg' %}" alt="Image" class="img-fluid">
               </div>
               <div class="listing-contents h-100">
                 <h3>Buick LaCrosse</h3>
