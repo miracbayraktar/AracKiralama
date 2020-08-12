@@ -1,6 +1,6 @@
 {% extends "homebase.html" %}
 
-{% block title %}login {{ setting.company }} {% endblock %}
+{% block title %}signup {{ setting.company }} {% endblock %}
 {% block keywords %} {{ setting.keywords }} {% endblock %}
 {% block description %} {{ setting.description }} {% endblock %}
 {% block head %}
@@ -26,7 +26,7 @@
                 <div class="col-lg-5">
 
                     <div class="intro">
-                        <h1><strong>login</strong></h1>
+                        <h1><strong>signup</strong></h1>
                         <div class="custom-breadcrumbs"><a href="/">Ana Sayfa</a> <span class="mx-2">/</span> <strong>login</strong></div>
                     </div>
 
@@ -38,7 +38,7 @@
     <div class="row">
         <div class="col-sm-4 col-sm-offset-1">
             <div class="login-form"><!--login form-->
-                <h2>Hesap Bilgilerinizi Girin</h2>
+                <h2>Bilgilerinizi Girin</h2>
                 {% if messages %}
                     {% for message in messages %}
                         <div class="alert alert-{{ message.tags }}" role="alert">
@@ -46,16 +46,21 @@
                         </div>
                     {% endfor %}
                 {% endif %}
-                <form action="" method="post">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <input class="input" type="text" name="username" placeholder="User Name">
-                    </div>
-                    <div class="form-group">
-                        <input class="input" type="password" name="password" placeholder="Password">
-                    </div>
-
-                    <input type="submit" class="btn btn-block btn-primary text-white py-3 px-5" value="Login">
+                <form method="post">
+                            {% csrf_token %}
+                            {% for field in form %}
+                                <p>
+                                    {{ field.label_tag }}<br>
+                                    {{ field }}
+                                    {% if field.help_text %}
+                                        <small style="color: grey">{{ field.help_text }}</small>
+                                    {% endif %}
+                                    {% for error in field.errors %}
+                                        <p style="color: #ff0000" >{{ error }}</p>
+                                    {% endfor %}
+                                </p>
+                            {% endfor %}
+                            <button type="submit">Sign up</button>
                 </form>
             </div><!--/login form-->
         </div>

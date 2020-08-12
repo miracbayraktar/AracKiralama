@@ -1,9 +1,10 @@
 from django.contrib import messages
 from django.contrib.auth import logout, authenticate, login
+from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
-from home.form import SearchForm
+from home.form import SearchForm, SignUpForm
 from home.models import Setting,ContactForm,ContactFormMessage
 from product.models import Product, Category
 
@@ -103,3 +104,24 @@ def login_view(request):
     category = Category.objects.all()
     context = {'category': category}
     return render(request, 'login.html', context)
+
+def signup_view(request):
+    if request.method == 'POST':
+        form=SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            return HttpResponseRedirect('/')
+        else:
+            messages.warning(request,form.errors)
+            return HttpResponseRedirect('/signup')
+
+    form =SignUpForm()
+    category = Category.objects.all()
+    context = {'category': category,
+               'form': form,
+               }
+    return render(request,'signup.html',context)
