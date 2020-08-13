@@ -5,7 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 
 from home.form import SearchForm, SignUpForm
-from home.models import Setting,ContactForm,ContactFormMessage
+from home.models import Setting, ContactForm, ContactFormMessage, UserProfil
 from product.models import Product, Category
 
 
@@ -114,6 +114,11 @@ def signup_view(request):
             password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=password)
             login(request, user)
+            current_user=request.user
+            data=UserProfil()
+            data.user_id=current_user.id
+            data.image="images/users/user.jpg"
+            data.save()
             return HttpResponseRedirect('/')
         else:
             messages.warning(request,form.errors)
