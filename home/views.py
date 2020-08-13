@@ -14,11 +14,17 @@ def index(request):
     setting=Setting.objects.get(pk=1)
     sliderdata=Product.objects.all()
     category=Category.objects.all()
+    products = Product.objects.all()[:2]
     dayproducts=Product.objects.all()[:4]
     lastproducts = Product.objects.all().order_by('-id')[:4]
     randomproducts = Product.objects.all().order_by('?')[:4]
 
-    context = {'setting': setting,'category':category, 'page':'home','sliderdata':sliderdata,'dayproducts':dayproducts,'lastproducts':lastproducts,'randomproducts':randomproducts,}
+    context = {'setting': setting,'category':category,
+               'page':'home','sliderdata':sliderdata,
+               'dayproducts':dayproducts,
+               'products': products,
+               'lastproducts':lastproducts,
+               'randomproducts':randomproducts,}
     return render(request, 'index.html', context)
 
 def hakkimizda(request):
@@ -27,6 +33,17 @@ def hakkimizda(request):
 
     context = {'setting': setting, 'page':'hakkimizda'}
     return render(request, 'hakkimizda.html', context)
+def araclar(request):
+    category = Category.objects.get(pk=1)
+    products = Product.objects.all()
+    setting=Setting.objects.get(pk=1)
+
+    context = {'setting': setting,
+               'page':'araclar',
+               'category':category,
+               'products':products
+               }
+    return render(request, 'araclar.html', context)
 
 def referanslar(request):
 
