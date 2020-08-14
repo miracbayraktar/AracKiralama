@@ -5,36 +5,22 @@
         <div class="row align-items-center justify-content-center">
             <div class="col-lg-10">
 
-                <form class="trip-form">
+                <form action="/search/" method="post">
+                     {% csrf_token %}
 
-                    <div class="row align-items-center">
 
-                        <div class="mb-3 mb-md-0 col-md-3">
+                    <div class="form-group">
 
-                            <select name="" id="" class="custom-select form-control">
-                                {% for rs in category %}
-                                <option value="">{{ rs.title}}</option>
-                                {% endfor %}
-                            </select>
+                        <div class="col-lg-5">
+                            <input name="query" class="form-control" type="text" placeholder="Enter your keyword ">
 
                         </div>
 
-                        <div class="mb-3 mb-md-0 col-md-3">
-                            <div class="form-control-wrap">
-                                <input type="text" id="cf-3" placeholder="Pick up" class="form-control datepicker px-3">
-                                <span class="icon icon-date_range"></span>
 
-                            </div>
-                        </div>
-                        <div class="mb-3 mb-md-0 col-md-3">
-                            <div class="form-control-wrap">
-                                <input type="text" id="cf-4" placeholder="Drop off" class="form-control datepicker px-3">
-                                <span class="icon icon-date_range"></span>
-                            </div>
-                        </div>
-                        <div class="mb-3 mb-md-0 col-md-3">
-                            <input type="submit" value="Search Now" class="btn btn-primary btn-block py-3">
-                        </div>
+
+                        <label class="col-lg-2">
+                            <button type="submit" value="Search Now" class="btn btn-danger">Search</button>
+                        </label>
                     </div>
 
                 </form>

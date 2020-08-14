@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 class SearchForm(forms.Form):
     query=forms.CharField(label='Search',max_length=100)
-    catid = forms.IntegerField()
+
 
 class SignUpForm(UserCreationForm):
     username= forms.CharField(max_length=30,label ='User Name :')

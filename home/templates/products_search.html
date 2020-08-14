@@ -1,40 +1,41 @@
-<div class="row align-items-center">
-    <table cellpadding="3", width="1200">
-        <tr>
+{% extends "homebase.html" %}
 
-                  <div class="mb-3 mb-md-0 col-md-3">
-                    <select name="" id="" class="custom-select form-control">
-                      <option value="">Select Type</option>
-                      <option value="">Ferrari</option>
-                      <option value="">Audi</option>
-                      <option value="">Mercedes</option>
-                      <option value="">Lamborghini</option>
-                    </select>
-                  </div>
-        </tr>
-        <tr>
-              {% for rs in products %}
-                  <div class="mb-3 mb-md-0 col-md-3">
-                    <div class="form-control-wrap">
-                      <input type="text" id="cf-3" placeholder="Pick up" class="form-control datepicker px-3">
-                      <span class="icon icon-date_range"></span>
+{% block title %}product search result {% endblock %}
+{% block keywords %} {{ categorydata.keywords }} {% endblock %}
+{% block description %} {{ categorydata.description }} {% endblock %}
+{% block head %}
 
-                    </div>
-                  </div>
-              {% endfor %}
-        </tr>
-        <tr>
-                  <div class="mb-3 mb-md-0 col-md-3">
-                    <div class="form-control-wrap">
-                      <input type="text" id="cf-4" placeholder="Drop off" class="form-control datepicker px-3">
-                      <span class="icon icon-date_range"></span>
-                    </div>
-                  </div>
-        </tr>
-        <tr>
-                  <div class="mb-3 mb-md-0 col-md-3">
-                    <input type="submit" value="Search Now" class="btn btn-primary btn-block py-3">
-                  </div>
-        </tr>
-    </table>
-</div>
+    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}' />
+
+{% endblock %}
+
+
+{% block content %}
+
+
+
+
+
+    <div class="row">
+
+
+        <table cellpadding="3", width="1200">
+
+            <tr>
+                {% for rs in products %}
+                    <tr>
+                        <td><a href="/product/{{ rs.id }}/{{ rs.slug }}"><img src="{{ rs.image.url }}" style="" alt=""></a></td>
+                        <td><h4 class="product-name"><a href="/product/{{ rs.id }}/{{ rs.slug }}"></a></h4></td>
+                        <td><a href="/category/{{ rs.category.id }}/{{ rs.category.slug }}">{{ rs.category }}</a></td>
+                        <td><h4>${{ rs.price }}</h4></td>
+
+                    </tr>
+                {% endfor %}
+            </tr>
+
+
+        </table>
+    </div>
+
+
+{% endblock %}

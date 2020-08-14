@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import logout, authenticate, login
 from django.contrib.auth.forms import UserCreationForm
+from django.core.serializers import json
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 
@@ -88,17 +89,19 @@ def product_detail(request,id,slug):
    return render(request, 'product_detail.html',context)
 
 def product_search(request):
-
-    if request.method== 'POST':
-        form=SearchForm(request.POST)
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
         if form.is_valid():
             category = Category.objects.all()
-            query=form.cleaned_data['query']
-            product = Product.objects.filter(title__icontains='query')
-            context = {'products': product, 'category': category}
-            return render(request, 'products_search.html', context)
+            query = form.cleaned_data['query']
+            products = Product.objects.filter(title__icontains=query)
+            context = { 'products': products,
+                        'category': category,
 
+                       }
+            return render(request, 'products_search.html', context)
     return HttpResponseRedirect('/')
+
 
 
 def logout_view(request):
