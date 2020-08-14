@@ -88,7 +88,7 @@ def product_detail(request,id,slug):
    context = {'products':product,'category': category}
    return render(request, 'product_detail.html',context)
 
-def product_search(request):
+def products(request):
     if request.method == 'POST':
         form = SearchForm(request.POST)
         if form.is_valid():
@@ -99,7 +99,7 @@ def product_search(request):
                         'category': category,
 
                        }
-            return render(request, 'products_search.html', context)
+            return render(request, 'products.html', context)
     return HttpResponseRedirect('/')
 
 
