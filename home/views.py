@@ -6,7 +6,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 
 from home.form import SearchForm, SignUpForm
-from home.models import Setting, ContactForm, ContactFormMessage, UserProfil
+from home.models import Setting, ContactForm, ContactFormMessage, UserProfil, FAQ
 from product.models import Product, Category
 
 
@@ -150,3 +150,12 @@ def signup_view(request):
                'form': form,
                }
     return render(request,'signup.html',context)
+
+
+def faq(request):
+    category = Category.objects.all()
+    faq=FAQ.objects.all().order_by('ordernumber')
+    context = {'category': category,
+               'faq': faq,
+               }
+    return render(request, 'faq.html', context)
