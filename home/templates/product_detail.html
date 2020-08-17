@@ -33,6 +33,17 @@
       <div class="container">
         <div class="row">
 
+            <form action="/order/addtocart/{{ product.id }}" method="post">
+                {% csrf_token %}
+
+                <div class="qty-input">
+                    <span class="text-uppercase">Adet:</span>
+                    <input name="quantity" class="input" type="number" min="0" max="{{ product.amount }}" value="1">
+                </div>
+                <button type="submit" class="primary-btn add-to-cart"><i class="fa fa-shopping cart"></i>Add to Cart</button>
+
+            </form>
+
         </div>
       </div>
     </div>
