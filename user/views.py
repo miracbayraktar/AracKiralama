@@ -1,12 +1,13 @@
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 
 # Create your views here.
-from home.models import UserProfil
-from product.models import Category
+from home.models import UserProfil, Setting
+from product.models import Category, Product, ProductForm
 from user.forms import UserUpdateForm, ProfileUpdateForm
 
 
@@ -60,3 +61,88 @@ def change_password(request):
 
 
         return render(request, 'change_password.html',context)
+
+@login_required(login_url='/login')  # Check login
+def productss(request):
+    setting = Setting.objects.get(pk=1)
+    category = Category.objects.all()
+    current_user = request.user
+    productss= Product.objects.filter(user_id=current_user.id, status='True')
+    context = {
+        'category': category,
+        'productss': productss,
+        'setting': setting,
+    }
+    return render(request, 'user_productss.html', context)
+
+@login_required(login_url='/login')  # Check login
+def addproduct(request):
+    setting = Setting.objects.get(pk=1)
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES)
+
+
+
+
+        if form.is_valid():
+            current_user = request.user
+            data = Product()  # model ile bağlantı kur
+            data.user_id = current_user.id
+            data.category = form.cleaned_data['category']
+            data.address = form.cleaned_data['address']
+            data.title = form.cleaned_data['title']
+            data.keywords = form.cleaned_data['keywords']
+            data.description = form.cleaned_data['description']
+            data.image = form.cleaned_data['image']
+
+            data.slug = form.cleaned_data['slug']
+            data.status = 'False'
+
+            data.save()
+            messages.success(request, "Başarılı bir şekilde eklendi..")
+            return HttpResponseRedirect('/user/productss/')
+        else:
+            messages.success(request, 'Content Form Error:' + str(form.errors))
+            return HttpResponseRedirect('/')
+    else:
+        category = Category.objects.all()
+        form = ProductForm()
+        context = {
+            'category': category,
+            'form': form,
+            'setting': setting,
+        }
+        return render(request, 'user_addproduct.html', context)
+
+@login_required(login_url='/login')  # Check login
+def productedit(request, id):
+    setting = Setting.objects.get(pk=1)
+    product = Product.objects.get(id=id)
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'İlan Başarıyla Güncellenmiştir !')
+            return HttpResponseRedirect('/user/productss/')
+        else:
+            messages.success(request, 'mekan Form Error: ' + str(form.errors))
+            return HttpResponseRedirect('/user/productedit/' + str(id))
+    else:
+        category = Category.objects.all()
+        form = ProductForm(instance=product)
+        context = {
+            'category': category,
+            'form': form,
+            'setting': setting,
+        }
+        return render(request, 'user_addproduct.html', context)
+
+
+@login_required(login_url='/login')  # Check login
+def productdelete(request, id):
+    current_user = request.user
+    Product.objects.filter(id=id, user_id=current_user.id).delete()
+    messages.success(request, 'İlan Silindi..')
+    return HttpResponseRedirect('/user/productss/')
+
+

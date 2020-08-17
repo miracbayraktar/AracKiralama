@@ -2,7 +2,8 @@
 from django.contrib import admin
 
 # Register your models here.
-from product.models import Category, Product, Images
+from product.models import Category, Product, Images, Article, ProductForm
+
 
 class ProductImageInline(admin.TabularInline):
     model = Images
@@ -22,9 +23,14 @@ class ProductAdmin(admin.ModelAdmin):
 class ImagesAdmin(admin.ModelAdmin):
     list_display = ['title','product', 'image']
 
+class ArticleAdmin(admin.ModelAdmin):
+    list_display = ['name', 'pub_date']
 
 
 
+
+admin.site.register(Article,ArticleAdmin)
 admin.site.register(Category,CategoryAdmin)
 admin.site.register(Product,ProductAdmin)
 admin.site.register(Images,ImagesAdmin)
+
