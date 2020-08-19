@@ -5,7 +5,7 @@
 
             <div class="col-3">
               <div class="site-logo">
-                <a href=""><strong>CarRental</strong></a>
+                <a href=""><strong>MiracOto</strong></a>
               </div>
             </div>
 
@@ -24,15 +24,15 @@
                   <li><a href="/addarticle" class="nav-link">Rezervasyon</a></li>
                   <li>
                       {% if user.id is not None  %}
-                          <a href="/login" class="nav-link">{{ request.user }}</a>/<a href="/logout" class="nav-link">Logout</a>
+                          <a href="/login" class="nav-link">{{ request.user }}</a>/<a href="/logout" class="nav-link">Çıkış</a>
                       {% else %}
 
 
-                      <a href="/login" class="nav-link">Login</a>/<a href="/logout" class="nav-link">Logout</a>
+                      <a href="/login" class="nav-link">Giriş</a>/<a href="/logout" class="nav-link">Çıkış</a>
                       {% endif %}
-                        <a href="/signup" class="nav-link">Sıgn In</a>
+                        <a href="/signup" class="nav-link">Üye Ol</a>
                   </li>
-                  <li><a href="/user" class="nav-link">UserProfil</a></li>
+                  <li><a href="/user" class="nav-link">Kullanıcı Bilgileri</a></li>
                   <li><a href="/search" class="nav-link"></a>
 
                   <form action="/search/" method="post">
