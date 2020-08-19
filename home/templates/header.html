@@ -21,6 +21,7 @@
                   <li><a href="/hakkimizda" class="nav-link">Hakkımızda</a></li>
                   <li><a href="/sss" class="nav-link">SSS</a></li>
                   <li><a href="/iletisim" class="nav-link">İletişim</a></li>
+                  <li><a href="/addarticle" class="nav-link">Rezervasyon</a></li>
                   <li>
                       {% if user.id is not None  %}
                           <a href="/login" class="nav-link">{{ request.user }}</a>/<a href="/logout" class="nav-link">Logout</a>
@@ -31,6 +32,7 @@
                       {% endif %}
                         <a href="/signup" class="nav-link">Sıgn In</a>
                   </li>
+                  <li><a href="/user" class="nav-link">UserProfil</a></li>
                   <li><a href="/search" class="nav-link"></a>
 
                   <form action="/search/" method="post">

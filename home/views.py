@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth import logout, authenticate, login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.core.serializers import json
 from django.http import HttpResponse, HttpResponseRedirect
@@ -7,7 +8,7 @@ from django.shortcuts import render, redirect
 
 from home.form import SearchForm, SignUpForm
 from home.models import Setting, ContactForm, ContactFormMessage, UserProfil, FAQ
-from product.models import Product, Category
+from product.models import Product, Category, ArticleForm, Article
 
 
 def index(request):
@@ -159,3 +160,39 @@ def faq(request):
                'faq': faq,
                }
     return render(request, 'faq.html', context)
+
+@login_required(login_url='/login')  # Check login
+def addarticle(request):
+    setting = Setting.objects.get(pk=1)
+    if request.method == 'POST':
+        form = ArticleForm(request.POST, request.FILES)
+
+
+
+
+        if form.is_valid():
+            current_user = request.user
+            data = Article()  # model ile bağlantı kur
+            data.user_id = current_user.id
+            data.category = form.cleaned_data['category']
+            data.product = form.cleaned_data['product']
+            data.name = form.cleaned_data['name']
+            data.phone = form.cleaned_data['phone']
+            data.pub_date = form.cleaned_data['pub_date']
+            data.son_date = form.cleaned_data['son_date']
+
+            data.save()
+            messages.success(request, "Başarılı bir şekilde eklendi..")
+            return HttpResponseRedirect('/')
+        else:
+            messages.success(request, 'Content Form Error:' + str(form.errors))
+            return HttpResponseRedirect('/')
+    else:
+        category = Category.objects.all()
+        form = ArticleForm()
+        context = {
+            'category': category,
+            'form': form,
+            'setting': setting,
+        }
+        return render(request, ('user_addproduct.html'), context)

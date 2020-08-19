@@ -36,21 +36,21 @@
       </div>
 
 <div class="row">
-    <div class="form-group row">
-        <div class="col-md-6 mr-auto">
-          <div class="col-md-6" >
-            <form action="#" method="post">
-              <div class="form-group row">
-                    <form action="" method="post">
-                       {% csrf_token %}
-                       {{ form.as_p }}
-                       <input type="submit" class="btn btn-block btn-primary text-white py-3 px-5" value="Gönder">
-                    </form>
+<div class="col-md-2"></div>
+    <div class="col-md-6" >
+        <form action="#" method="post">
+            <div class="form-group row">
 
-              </div>
-            </form>
-        </div>
-     </div>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" class="btn btn-block btn-primary text-white py-3 px-5" value="Gönder">
+                </form>
+
+            </div>
+        </form>
+    </div>
+
 </div>
 
           <div class="col-lg-4 ml-auto">

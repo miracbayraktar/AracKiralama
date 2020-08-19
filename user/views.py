@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 from home.models import UserProfil, Setting
-from product.models import Category, Product, ProductForm
+from product.models import Category, Product, ProductForm, Article, ArticleForm
 from user.forms import UserUpdateForm, ProfileUpdateForm
 
 
@@ -17,6 +17,8 @@ def index(request):
     profile=UserProfil.objects.get(user_id=current_user.id)
     context = {'category': category,'profile': profile}
     return render(request, 'user_profile.html',context)
+
+
 
 
 def user_update(request):
@@ -76,66 +78,42 @@ def productss(request):
     return render(request, 'user_productss.html', context)
 
 @login_required(login_url='/login')  # Check login
-def addproduct(request):
+def addarticle(request):
     setting = Setting.objects.get(pk=1)
     if request.method == 'POST':
-        form = ProductForm(request.POST, request.FILES)
+        form = ArticleForm(request.POST, request.FILES)
 
 
 
 
         if form.is_valid():
             current_user = request.user
-            data = Product()  # model ile bağlantı kur
+            data = Article()  # model ile bağlantı kur
             data.user_id = current_user.id
             data.category = form.cleaned_data['category']
-            data.address = form.cleaned_data['address']
-            data.title = form.cleaned_data['title']
-            data.keywords = form.cleaned_data['keywords']
-            data.description = form.cleaned_data['description']
-            data.image = form.cleaned_data['image']
-
-            data.slug = form.cleaned_data['slug']
-            data.status = 'False'
+            data.product = form.cleaned_data['product']
+            data.name = form.cleaned_data['name']
+            data.phone = form.cleaned_data['phone']
+            data.pub_date = form.cleaned_data['pub_date']
+            data.son_date = form.cleaned_data['son_date']
 
             data.save()
             messages.success(request, "Başarılı bir şekilde eklendi..")
-            return HttpResponseRedirect('/user/productss/')
+            return HttpResponseRedirect('/')
         else:
             messages.success(request, 'Content Form Error:' + str(form.errors))
             return HttpResponseRedirect('/')
     else:
         category = Category.objects.all()
-        form = ProductForm()
+        form = ArticleForm()
         context = {
             'category': category,
             'form': form,
             'setting': setting,
         }
-        return render(request, 'user_addproduct.html', context)
+        return render(request, ('user_addproduct.html'), context)
 
-@login_required(login_url='/login')  # Check login
-def productedit(request, id):
-    setting = Setting.objects.get(pk=1)
-    product = Product.objects.get(id=id)
-    if request.method == 'POST':
-        form = ProductForm(request.POST, request.FILES, instance=product)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'İlan Başarıyla Güncellenmiştir !')
-            return HttpResponseRedirect('/user/productss/')
-        else:
-            messages.success(request, 'mekan Form Error: ' + str(form.errors))
-            return HttpResponseRedirect('/user/productedit/' + str(id))
-    else:
-        category = Category.objects.all()
-        form = ProductForm(instance=product)
-        context = {
-            'category': category,
-            'form': form,
-            'setting': setting,
-        }
-        return render(request, 'user_addproduct.html', context)
+
 
 
 @login_required(login_url='/login')  # Check login

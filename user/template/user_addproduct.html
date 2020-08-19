@@ -1,6 +1,6 @@
 {% extends "homebase.html" %}
 
-{% block title %}User Profil {{ setting.company }} {% endblock %}
+{% block title %}Rezervasyon {{ setting.company }} {% endblock %}
 {% block keywords %} {{ setting.keywords }} {% endblock %}
 {% block description %} {{ setting.description }} {% endblock %}
 {% block head %}
@@ -26,8 +26,8 @@
                 <div class="col-lg-5">
 
                     <div class="intro">
-                        <h1><strong>User</strong></h1>
-                        <div class="custom-breadcrumbs"><a href="/">Ana Sayfa</a> <span class="mx-2">/</span> <strong>Use Profil</strong></div>
+                        <h1><strong>Rezervasyon</strong></h1>
+                        <div class="custom-breadcrumbs"><a href="/">Ana Sayfa</a></div>
                     </div>
 
                 </div>
@@ -39,11 +39,19 @@
         <div class="form-group ">
             <div class="col-md-4 ">
 
-                <ul>
-                    {% for article in latest %}
-                        <li>{{ article.pub_date }}: {{ article.title }}</li>
-                    {% endfor %}
-                </ul>
+               {% load static %}
+                        <form method="post" enctype="multipart/form-data" >
+
+                            {% csrf_token %}
+                            <fieldset class="form-group">
+                                {{ form.media }}
+                                {{ form.as_p }}
+                            </fieldset>
+                            <div class="form-group">
+                                <button class="primary-btn" type="submit">KAYDET</button>
+                            </div>
+
+                        </form>
             </div>
         </div>
 

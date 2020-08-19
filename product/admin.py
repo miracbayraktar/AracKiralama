@@ -24,7 +24,7 @@ class ImagesAdmin(admin.ModelAdmin):
     list_display = ['title','product', 'image']
 
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ['name', 'pub_date']
+    list_display = ['name', 'product', 'pub_date','son_date']
 
 
 
