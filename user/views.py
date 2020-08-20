@@ -65,17 +65,17 @@ def change_password(request):
         return render(request, 'change_password.html',context)
 
 @login_required(login_url='/login')  # Check login
-def productss(request):
+def addshow(request):
     setting = Setting.objects.get(pk=1)
     category = Category.objects.all()
     current_user = request.user
-    productss= Product.objects.filter(user_id=current_user.id, status='True')
+    show= Product.objects.filter(user_id=current_user.id, status='True')
     context = {
         'category': category,
-        'productss': productss,
+        'show': show,
         'setting': setting,
     }
-    return render(request, 'user_productss.html', context)
+    return render(request, 'user_addshow.html', context)
 
 @login_required(login_url='/login')  # Check login
 def addarticle(request):
@@ -98,8 +98,8 @@ def addarticle(request):
             data.son_date = form.cleaned_data['son_date']
 
             data.save()
-            messages.success(request, "Başarılı bir şekilde eklendi..")
-            return HttpResponseRedirect('/')
+            messages.success(request, "Rezervasyon yapıldı")
+            return HttpResponseRedirect('/addarticle')
         else:
             messages.success(request, 'Content Form Error:' + str(form.errors))
             return HttpResponseRedirect('/')
@@ -111,16 +111,16 @@ def addarticle(request):
             'form': form,
             'setting': setting,
         }
-        return render(request, ('user_addproduct.html'), context)
+        return render(request, 'user_addproduct.html', context)
 
 
 
 
 @login_required(login_url='/login')  # Check login
-def productdelete(request, id):
+def adddelete(request, id):
     current_user = request.user
-    Product.objects.filter(id=id, user_id=current_user.id).delete()
-    messages.success(request, 'İlan Silindi..')
-    return HttpResponseRedirect('/user/productss/')
+    Article.objects.filter(id=id, user_id=current_user.id).delete()
+    messages.success(request, 'silindi')
+    return HttpResponseRedirect('/user/adddelete/')
 
 

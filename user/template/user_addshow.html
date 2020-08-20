@@ -1,0 +1,54 @@
+{% extends "homebase.html" %}
+
+{% block title %}Rezervasyon {{ setting.company }} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
+{% block head %}
+
+     <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}' />
+
+{% endblock %}
+
+
+{% block content %}
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="hero inner-page" style="background-image: url('../static/images/hero_1_a.jpg');">
+
+        <div class="container">
+            <div class="row align-items-end ">
+                <div class="col-lg-5">
+
+                    <div class="intro">
+                        <h1><strong>Rezervasyon</strong></h1>
+                        <div class="custom-breadcrumbs"><a href="/">Ana Sayfa</a></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="">
+        <div class="form-group ">
+            <div class="col-md-4 ">
+
+               {% load static %}
+                        <form method="post" enctype="multipart/form-data" >
+
+                            {% csrf_token %}
+
+
+                        </form>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
