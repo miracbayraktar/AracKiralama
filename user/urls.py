@@ -13,8 +13,8 @@ urlpatterns = [
    # path('productss/', views.productss, name="productss"),
     path('addarticle/', views.addarticle, name='addarticle'),
     path('addshow/', views.addshow, name='addshow'),
-    path('adddelete/', views.adddelete, name='adddelete'),
-    #path('productedit/<int:id>', views.productedit, name='productedit'),
+    path('articledelete/<int:id>', views.articledelete, name='articledelete'),
+    path('articleedit/<int:id>', views.articleedit, name='articleedit'),
     #path('productdelete/<int:id>', views.productdelete, name='productdelete'),
 
     # ex: /product/5/

@@ -43,11 +43,11 @@
                             <thead class="text-white bg-dark">
                             <tr class="text-justify">
 
-                                <th>name</th>
-                                <th>product</th>
-                                <th>phone</th>
-                                <th>pub_date</th>
-                                <th>son_date</th>
+                                <th>isim</th>
+                                <th>araç</th>
+                                <th>telefon</th>
+                                <th>alış tarihi</th>
+                                <th>iade tarihi</th>
                                 <th class="text-left" colspan="2">İşlemler</th>
 
 
@@ -67,11 +67,11 @@
                                 <td class="text-left">{{ rs.son_date }}</td>
 
                                 <td class="text-left">
-                                    <a onclick="return confirm('Silinecek ! Emin misin ?')" class="primary-btn"  href="/user/adddelete/{{ rs.id }}">SİL</a>
+                                     <a onclick="return confirm('Silinecek ! Emin misin ?')" class="primary-btn"  href="/user/articledelete/{{ rs.id }}">SİL</a>
 
                                 </td>
                                 <td class="text-left">
-                                    <a class="primary-btn"  href="/user/productedit/{{ rs.id }}">GÜNCELLE</a>
+                                    <a class="primary-btn"  href="/user/articleedit/{{ rs.id }}">GÜNCELLE</a>
 
                                 </td>
 

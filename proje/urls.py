@@ -41,7 +41,7 @@ urlpatterns = [
     path('login/',views.login_view,name='login_view'),
     path('signup/',views.signup_view,name='signup_view'),
     path('sss/',views.faq,name='faq'),
-    path('addarticle/', views.addarticle, name='addarticle'),
+
     path('user/',views.UserProfil, name='user'),
 
 

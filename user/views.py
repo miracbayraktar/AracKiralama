@@ -88,7 +88,7 @@ def addarticle(request):
 
             data.save()
             messages.success(request, "Rezervasyon yapıldı")
-            return HttpResponseRedirect('/addarticle')
+            return HttpResponseRedirect('/user/addshow/')
         else:
             messages.success(request, 'Content Form Error:' + str(form.errors))
             return HttpResponseRedirect('/')
@@ -108,7 +108,7 @@ def addshow(request):
     setting = Setting.objects.get(pk=1)
     category = Category.objects.all()
     current_user = request.user
-    addshow= Article.objects.filter()
+    addshow = Article.objects.filter()
     context = {
         'category': category,
         'addshow': addshow,
@@ -117,10 +117,33 @@ def addshow(request):
     return render(request, 'user_addshow.html', context)
 
 @login_required(login_url='/login')  # Check login
-def adddelete(request,id):
+def articledelete(request, id):
     current_user = request.user
-    Article.objects.filter(id=id, user_id=current_user.id).delete()
-    messages.success(request, 'silindi')
-    return HttpResponseRedirect('/user/adddelete/')
+    Article.objects.filter(id=id).delete()
+    messages.success(request, 'Rezervasyon Silindi..')
+    return HttpResponseRedirect('/user/addshow/')
+
+@login_required(login_url='/login')  # Check login
+def articleedit(request, id):
+    setting = Setting.objects.get(pk=1)
+    article = Article.objects.get(id=id)
+    if request.method == 'POST':
+        form = ArticleForm(request.POST, request.FILES, instance=article)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Rezervasyon Güncellenmiştir !')
+            return HttpResponseRedirect('/user/addshow/')
+        else:
+            messages.success(request, 'mekan Form Error: ' + str(form.errors))
+            return HttpResponseRedirect('/user/articleedit/' + str(id))
+    else:
+        category = Category.objects.all()
+        form = ArticleForm(instance=article)
+        context = {
+            'category': category,
+            'form': form,
+            'setting': setting,
+        }
+        return render(request, 'user_addproduct.html', context)
 
 
