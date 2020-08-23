@@ -25,7 +25,7 @@
                   <li><a href="/user/addshow" class="nav-link">Rezervasyon Göster</a></li>
                   <li>
                       {% if user.id is not None  %}
-                          <a href="/login" class="nav-link">{{ request.user }}</a>/<a href="/logout" class="nav-link">Çıkış</a>
+                          <a href="/user" class="nav-link">{{ request.user }}</a>/<a href="/logout" class="nav-link">Çıkış</a>
                       {% else %}
 
 

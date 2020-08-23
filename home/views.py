@@ -16,7 +16,7 @@ def index(request):
     setting=Setting.objects.get(pk=1)
     sliderdata=Product.objects.all()
     category=Category.objects.all()
-    products = Product.objects.all()[:2]
+    products = Product.objects.all()[:6]
     dayproducts=Product.objects.all()[:4]
     lastproducts = Product.objects.all().order_by('-id')[:4]
     randomproducts = Product.objects.all().order_by('?')[:4]

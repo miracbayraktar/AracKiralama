@@ -91,28 +91,28 @@ class Imagesw(models.Model):
         return self.title
 
 class Article(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    name = models.CharField(max_length=30)
-    phone = models.CharField(max_length=12)
-    pub_date = models.DateField()
-    son_date = models.DateField()
+
+    arac = models.ForeignKey(Product, on_delete=models.CASCADE)
+    isim = models.CharField(max_length=30)
+    telefon = models.CharField(max_length=12)
+    alis_tarih = models.DateField()
+    iade_tarih = models.DateField()
 
 
     def __str__(self):
-        return self.name
+        return self.isim
 
 class ArticleForm(ModelForm):
     class Meta:
         model = Article
-        fields = ['category', 'product', 'name', 'phone','pub_date','son_date']
+        fields = [ 'arac', 'isim', 'telefon','alis_tarih','iade_tarih']
         widgets = {
-            'category': Select(attrs={'class': 'input', 'placeholder': 'category'}, choices={Category.objects.all()}),
-            'product': Select(attrs={'class': 'input', 'placeholder': 'product'}, choices={Product.objects.all()}),
-            'name': TextInput(attrs={'class': 'input', 'placeholder': 'name'}),
-            'phone': TextInput(attrs={'class': 'input', 'placeholder': 'phone'}),
-            'pub_date':DateInput(attrs={'class': 'input', 'placeholder': 'alıs_tarihi'}),
-            'son_date': DateInput(attrs={'class': 'input', 'placeholder': 'iade_tarihi'}),
+
+            'arac': Select(attrs={'class': 'input', 'placeholder': 'araç'}, choices={Product.objects.all()}),
+            'isim': TextInput(attrs={'class': 'input', 'placeholder': 'isim'}),
+            'telefon': TextInput(attrs={'class': 'input', 'placeholder': 'telefon'}),
+            'alis_tarih':DateInput(attrs={'class': 'input', 'placeholder': 'alıs_tarihi'}),
+            'iade_tarih': DateInput(attrs={'class': 'input', 'placeholder': 'iade_tarihi'}),
 
         }
 
