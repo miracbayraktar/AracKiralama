@@ -64,18 +64,7 @@ def change_password(request):
 
         return render(request, 'change_password.html',context)
 
-@login_required(login_url='/login')  # Check login
-def addshow(request):
-    setting = Setting.objects.get(pk=1)
-    category = Category.objects.all()
-    current_user = request.user
-    show= Product.objects.filter(user_id=current_user.id, status='True')
-    context = {
-        'category': category,
-        'show': show,
-        'setting': setting,
-    }
-    return render(request, 'user_addshow.html', context)
+
 
 @login_required(login_url='/login')  # Check login
 def addarticle(request):
@@ -114,10 +103,21 @@ def addarticle(request):
         return render(request, 'user_addproduct.html', context)
 
 
-
+@login_required(login_url='/login')  # Check login
+def addshow(request):
+    setting = Setting.objects.get(pk=1)
+    category = Category.objects.all()
+    current_user = request.user
+    addshow= Article.objects.filter()
+    context = {
+        'category': category,
+        'addshow': addshow,
+        'setting': setting,
+    }
+    return render(request, 'user_addshow.html', context)
 
 @login_required(login_url='/login')  # Check login
-def adddelete(request, id):
+def adddelete(request,id):
     current_user = request.user
     Article.objects.filter(id=id, user_id=current_user.id).delete()
     messages.success(request, 'silindi')

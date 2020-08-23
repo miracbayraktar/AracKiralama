@@ -197,16 +197,3 @@ def addarticle(request):
         }
         return render(request, 'user_addproduct.html', context)
 
-
-@login_required(login_url='/login')  # Check login
-def addshow(request):
-    setting = Setting.objects.get(pk=1)
-    category = Category.objects.all()
-    current_user = request.user
-    show= Article.objects.filter(user_id=current_user.id, status='True')
-    context = {
-        'category': category,
-        'show': show,
-        'setting': setting,
-    }
-    return render(request, 'user_addshow.html', context)

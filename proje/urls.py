@@ -43,7 +43,8 @@ urlpatterns = [
     path('sss/',views.faq,name='faq'),
     path('addarticle/', views.addarticle, name='addarticle'),
     path('user/',views.UserProfil, name='user'),
-    path('addshow/', views.addshow, name='addshow'),
+
+
 
 
 
