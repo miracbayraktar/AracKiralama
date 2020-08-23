@@ -79,12 +79,12 @@ def addarticle(request):
             current_user = request.user
             data = Article()  # model ile bağlantı kur
             data.user_id = current_user.id
-            data.category = form.cleaned_data['category']
-            data.product = form.cleaned_data['product']
-            data.name = form.cleaned_data['name']
-            data.phone = form.cleaned_data['phone']
-            data.pub_date = form.cleaned_data['pub_date']
-            data.son_date = form.cleaned_data['son_date']
+
+            data.arac = form.cleaned_data['arac']
+            data.isim = form.cleaned_data['isim']
+            data.telefon = form.cleaned_data['telefon']
+            data.alis_tarih = form.cleaned_data['alis_tarih']
+            data.iade_tarih = form.cleaned_data['iade_tarih']
 
             data.save()
             messages.success(request, "Rezervasyon yapıldı")

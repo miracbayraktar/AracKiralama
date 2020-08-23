@@ -122,32 +122,32 @@ class ArticleForm(ModelForm):
 
 class ArticleYearArchiveView(YearArchiveView):
     queryset = Article.objects.all()
-    date_field = "pub_date"
-    date_fields = "son_date"
+    date_field = "alis_tarih"
+    date_fields = "iade_tarih"
     make_object_list = True
     allow_future = True
 
 class ArticleMonthArchiveView(MonthArchiveView):
     queryset = Article.objects.all()
-    date_field = "pub_date"
-    date_fields = "son_date"
+    date_field = "alis_tarih"
+    date_fields = "iade_tarih"
     allow_future = True
 
 class ArticleWeekArchiveView(WeekArchiveView):
     queryset = Article.objects.all()
-    date_field = "pub_date"
-    date_fields = "son_date"
+    date_field = "alis_tarih"
+    date_fields = "iade_tarih"
     week_format = "%W"
     allow_future = True
 
 class ArticleDayArchiveView(DayArchiveView):
     queryset = Article.objects.all()
-    date_field = "pub_date"
-    date_fields = "son_date"
+    date_field = "alis_tarih"
+    date_fields = "iade_tarih"
     allow_future = True
 
 class ArticleTodayArchiveView(TodayArchiveView):
     queryset = Article.objects.all()
-    date_field = "pub_date"
-    date_fields = "son_date"
+    date_field = "alis_tarih"
+    date_fields = "iade_tarih"
     allow_future = True
